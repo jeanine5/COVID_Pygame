@@ -7,6 +7,10 @@ pick between two difficult choices while also considering the severity of COVID!
 March 2020 t0 September 2020. Our game is supposed to replicate the difficult decision parent of two different
 household had to make, and the effect the spend of tight income had on the stress of adults.
 
+You can run the program from the main.py module. I know it is very long (400+ lines of code) but this is a mistake, a very
+important mistakes, that I made! It has reminded me with my future coding endeavors not to make a module/interface/class
+that long ever again.
+
 Because of time and complexity, we could not incorporate more household types such as single people no children and
 couples no children as a constant in out research.
 
