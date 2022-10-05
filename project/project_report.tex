@@ -1,0 +1,181 @@
+\documentclass[fontsize=11pt]{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{graphicx}
+\usepackage{parskip}
+\setlength{\parindent}{15pt}
+
+\title{CSC110 Project Report: Stress and Spending - The Correlation Between the Changes in Household Spending, and Stress Levels in Parents of North American Families during the COVID-19 Pandemic}
+\author{Luke Ham, Jeanine Ohene-Agyei, Bolin Shen, Chelsea Wang}
+\date{Tuesday, December 14, 2021}
+
+\begin{document}
+    \maketitle
+
+
+    \section*{Problem Description and Research Question}
+
+    The pandemic hit us out of nowhere, causing distress to many and impacting the lives of all families across the world. Many adults had their work hours cut, saw a reduction in their earnings, or were completely out of work with no pay. Under these circumstances, the average amount families spent on essential products and services had to increase, and as a result, most families’ average spending had to decrease when it came to non-essentials. In our research project, we classify essential products and services as groceries, utilities bills, COVID safety supplies like masks, gloves, disinfectants, and medicine. We classify non-essentials as products and services like restaurants, movies, games, and alcohol. The issue with this is that many of the non-essentials functioned stress relievers for many adults, especially parents. On top of this, the severity of COVID also impacted the way families spent their money: whether they should buy an essential product over a non-essential product or vice versa.
+
+    With these thoughts in mind, our group researched the following question: \textbf{How has the COVID-19 pandemic affected the correlation between average household spending on essential/non-essential items and stress in parents in North America?} We only researched this impact in single and coupled parents; however, it is crucial to note that this data against that of adults without children -- household spending and stress in adults with children vs without -- can be drastically different.
+
+    The motivation behind this research topic simply comes from being a child during the pandemic. As a child, we do not necessarily see what our parents or guardians go through to support us, and now with the pandemic, the task of child-rearing has become even more of a challenge. There are many factors that can affect the data we collect, such as adults who lost jobs or had hours reduced as stated earlier, but for reasons of managing complexity, we did not include these factors. Nevertheless, we must keep in mind all the trying situations adults, parents or not, went through during the early months of the pandemic. Imagine a family of five where both parents’ work hours are cut severely, or a single parent who is unemployed due to the pandemic. These negative changes put parents in many stressful situations, leaving them with even more questions: how will I support my family? Can I keep up with the bills? What will my family eat tonight? It is a sad reality that many children are unaware of, but with our research, we hope to show other kids what their parents conquered during the pandemic!
+
+
+    \section*{Data-set Description}
+
+    \underline{Essential/Non-essential spending}: This dataset comes from an organization called CentreForCities. It is in the format of an image (specifically a graph) and the data was used as an image for analysis purposes at the end of the game. This dataset uses data from January 1, 2020 until January 1, 2021, but we are really only looking at the data from March 2020 to September 2020.
+
+    \underline{Average Spending}: This is a government-based dataset from Statistics Canada. It is in the form of a bar graph image but was converted to be used as a CSV file. We only used the values for the two parent categories, lone- parent households and couples with children, and averaged them as an initial spending amount.
+
+    \underline{Stress}: This dataset comes from an organization called Frontiers in Psychiatry. It is an image and will be used as an image (bar graph with three categories: low, moderate, high stress) again for analysis purposes. The bar graph has three categories: low, moderate, high stress. But we just labeled the stress as average stress, which will start at 50 percent, and be computed on during the game to follow a trend such as the image.
+
+
+    \section*{Computational Plan}
+
+    We created a “user’s choice” game where the user/player is a parent and they must make choices throughout the early months of the pandemic, from March 2020 to September 2020. The user starts off with a specific average spending statistic which is based on the average calculated from the 2019 average household spending dataset. The values we used are in the CSV file. During the game, the user makes choices prompted by specific scenarios. These choices are stored as user-based data into three distinct lists: change in essential spending (essentials), change in non-essential spending, (non-essentials) and change in stress percentage (stress-percentage). The average calculated from the household spending dataset is the first value in the spending lists, and 50 is the first value in the stress percentage list.
+
+    Each choice the user makes has a valued amount to it. If the user chooses the non-essential choice, the non-essential value will be added to the change in non-essential spending value displayed on the screen, and the essential choice will be subtracted (vice versa). By doing this, we show that if you spend money on a non-essential choice, you lose what you could’ve spent on the essential choice (vice versa), moreover, we show the fluctuation of the amount you spent on essential and non-essential items during the 7-month period. The new added and subtracted amounts are then appended to their respective lists. This is for the y-axis for the graphs at the end. This is the data aggregation in the project.
+
+    For each non-essential choice the user chooses, their stress percentage decreases 5 percent. For each essential choice the user chooses, their stress percentage increases 5 percent. This is to show that the non-essentials as describe in our Problem Description are purposed as “stress-relievers”. The change in the essential spending, non-essential spending, and stress percentage is then displayed on the game screen, as well as the amount of money the player has left, so the user can see how their change in spending is affecting their stress. The amount left will never be close to or less than zero because it is only in a 7-month period. This entire process is completed through the pygame module.
+
+    We computed on the user's data before displaying the graphs. We created two functions that calculate the total change in the the user's essential and non-essential spending since the beginning of the pandemic, March 2020. With this, we turn this data into the interactive graphs.
+
+    At the end of the game, data transformation begins. The user’s data is transformed into three visual and interactive graphs using plotly. The graphs created are displayed separately in one browser, this way it is easier to view the user’s data. This was done by importing make-subplots from plotly.subplots. The user’s in-game statistics is then compared to the graphs of real-life statistics from our datasets. The graphs open in a browser and the datasets appear on the game screen. However, to see this analysis, the user MUST return to the game from the browser to view the datasets but will be able to click back and forth from the game and browser to continue comparing.
+
+    Our group used pygame to a much larger extent than what we have seen in this course to build this interactive game and create a graphical user interface. As a note, we did not use any other libraries other than plotly and pygame.
+
+
+    \section*{Instructions}
+    \textbf{Instructions for obtaining data sets and running the program}
+
+    \textbf{a.} Installations - Install the python libraries listed in the requirements.txt file – pygame version 2.0.1, plotly
+
+    \textbf{b.} Downloading Data Sets - Open the URL:
+
+    https://drive.google.com/file/d/1-dl50rCNURUwZzfI83H9msi6InxJYSrS/view?usp=sharing
+
+    This link should open a browser to the Google drive csv file where you can download the dataset by clicking the download button on the top right corner.
+
+    Alternatively, the same dataset can be downloaded from UTSend: https://send.utoronto.ca/
+
+    Claim ID: noH5MYtUh3YJRBu4 \\
+    Claim Passcode: KnMZ8i2RXcfM9uEy
+
+    Once you download it, place it in the same directory as the other files downloaded off MarkUs. The other datasets are used as images and are small enough to be submitted on MarkUs.
+
+    \textbf{Instructions after running main.py}
+
+    \textbf{c.} The game itself will provide instructions on how to make
+    your choices (use keyboard [up, down, left, right] keys), so follow the instructions that appear on the screen.
+
+    1. Once you run main.py, the interactive game will start. When it first starts, you will have an option of pressing the up arrow key on your keyboard or you down arrow key. By pressing up, you are choosing to be a lone parent. By pressing down arrow, you are choosing to be a coupled parent.
+
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{screen1.png}
+        \caption{Example of game start screen, Parent decision}
+        \label{fig:galaxy}
+    \end{figure}
+
+    2. After choosing what type of parent you want to be, you will be faced with instructions on how you will make your decisions later in the game. The game tells you that for scenarios, press left arrow for the first choice and right arrow for the second choice on your keyboard. To progress into the game, press your space bar on your keyboard.
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{screen2.png}
+        \caption{Example of left/right decision instructions}
+        \label{fig:galaxy}
+    \end{figure}
+    \\ \\ \\
+
+    3. Once you are in the game, scenarios will appear. Read the situation and choices you have. To choose the first option, press your left arrow key, to choose the second option, press your right arrow key on your keyboard. Continue choosing your options until you have completed the game.
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{screen3.png}
+        \caption{Example of scenarios}
+        \label{fig:galaxy}
+    \end{figure}
+
+    \textbf{After the Game:}
+
+    1. Once you’ve completed the game, there will a screen presenting the changes since the the beginning (March 2020) in spending for each month. This is the analysis. Press the left OR right key to view your graph
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{screen4.png}
+        \caption{Example of game end screen}
+        \label{fig:galaxy}
+    \end{figure}
+
+
+    2. A browser will open with only your data from the game. The graphs are a bit larger, so scroll down to see all the graphs. These graphs are interactive, you can zoom in and zoom out, etc.
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{screen6.png}
+        \caption{Example of graphs that open in browser}
+        \label{fig:galaxy}
+    \end{figure}
+    \\ \\ \\ \\ \\ \\
+
+    3. The datasets we used for our research will also appear in the game screen. Compare your results to the datasets to see how reacted to each scenario versus North American parents!
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{screen5.png}
+        \caption{Example of graphs that open in the game}
+        \label{fig:galaxy}
+    \end{figure}
+
+    4. To see how your data compares to the DATASETS, pull the browser window down to get back to game OR click the small space showing the game behind the browser or the yellow character (Figure 7). From there you can continue checking the results or click the exit button on the game to end the game. You can click the exit button any time during the game to start again. DO NOT press any other buttons than what the screen instructs you to do. If you do, your results will mess up and become inaccurate.
+    \begin{figure}[htp]
+        \centering
+        \includegraphics[width=12cm]{Screen Shot 2021-12-11 at 3.01.57 PM.png}
+        \caption{Example of where to click}
+        \label{fig:galaxy}
+    \end{figure}
+
+
+    \section*{Changes Since Proposal}
+
+    Since the proposal, we’ve had to alter our research question and our computational plan. We had stated in our proposal it was a relationship between the change in spending and the stress levels, however, our TA questioned that it might not be a relationship but a correlation instead. This makes more sense since, in a real-world scenario outside the game, not all essential products and services can cause stress and not all non-essential products and services relieve stress. In our computational plan, we did not “predict” the stress levels but changed the initial stress percentage by a specific percent for each choice the user makes. This is how we demonstrated a correlation like our research question proposed. We also decided to display 3 distinct user data graphs instead of displaying them all on one graph, so the user could easily filter between which graph was which and each graph could be interactive on its own. The analysis on the graphs we created that the TA suggested we do was done by creating two more functions that compute on the users data at the end of the game. The functions calculate the change in total essential and non-essential spending since the beginning. Then, the user can see these calculations on the interactive graph that appears in the browser. We also displayed the datasets at the end to help with the analysis. By doing this, the user can compare their results with what the datasets collected in North America. If the user sees their results align with that of the dataset, the user made similar choices to that of many families in North America. Otherwise, the user made different choices, whether they wanted more fun for their families or a better handle on their stress.
+
+    \section*{Discussion}
+
+    The results of the game vary depending on what the user choses throughout the game. However, we’ve designed the game to predicted how the user will decide what to do. Based off this, we believe this data answers our research question. We can see that the severity of COVID decided what families need during the 7-month period, as well as the stress. With each “essential choice” parents make, it can remind them of the circumstances they live in and the future of their children. For example, the constant reminder to buy COVID safety supplies reminds parents they don’t know how long they may have to live like this or when the non-essential services will reopen to lower their stress. This “predicted result” of the user’s choices aligns with the datasets. The analysis demonstrates a defining correlation between stress and families spending habits. Will we ever know if there exists a REALTIONSHIP between stress and spending habits? Maybe. However, that was not goal of this research project. We just wanted to show and prove that there exists a correlation. We made the scenarios as realistic during that time period as possible so the user could struggle a bit while making a choice. It is supposed to be a difficult decision to make so even the user can feel a fraction of the stress that the parents in the datasets felt during the pandemic. Through the datasets and the user’s data, we now can say that the COVID-19 pandemic affected the correlation between essential and non-essential spending, and stress by instilling fear in families that if they didn’t get the essentials they needed when the pandemic got worse, they and their families would not make it through successfully. This is where the stress originates from, the fear.
+
+    One obstacle we faced with the stress dataset was that it was a bar graph representing the low, moderate, and high stress parents felt before, during, and after the severity of the pandemic. We tried to average the “before stress” to get and initial stress, however the “before stress” was too low for further computations. The average turned out to be around 30 percent, but thinking ahead, if the user kept making “non-essential choices”, the stress would become negative, and we weren’t sure how to explain this phenomenon. So, we just decided to set it at 50 percent considering almost 60 percent of the adults in the dataset had moderate stress. Another problem we faced was finding a way to display the user’s data. There were two ways we planned to do it: display all the data on one graph or display the data on three separate graphs. With this, we also had to decide on how to display this collection of data to the game. First, we decided to do 3 separate graphs so it would be easier to read. Also, we had to take into consideration that the y-axis of the spending data and stress data were too different to combine as one. Then, we tried to save the graphs as images so we could display the graphs as a surface in the game. But we ran into too many discrepancies while installing the correct packages to do so, which is why we just displayed the graphs as a browser. This way the graphs can still be interactive for the user. Another obstacle that occurred closer to submission was how the screen display looked across an array of computers. We had originally designed the game screen on a Macbook, however, when testing the program on a fresh computer, we realized the screen dimensions were completely different. So we adjusted the screen dimensions so that for any computer the program was run on, it would look the same.
+
+    The next steps for further exploration would be incorporated the factors we initially left out as mentioned in the Problem Description. We would include adults with no children and include situations if the adults lost their job or had their work hours reduced. Then, maybe when we accomplish this, we can begin to answer if there exists a relationship between stress and essential/non-essential spending during COVID.
+
+
+
+
+    \section*{References}
+
+    \begin{flushleft}
+        \hangindent=1cm “Survey of Household Spending, 2019”. \textit{Statistics Canada}, 2019, https://www150.statcan.gc.ca/n1/daily-quotidien/210122/dq210122b-eng.htm.
+        Accessed 3 Nov. 2021.
+    \end{flushleft}
+
+
+    \begin{flushleft}
+        \hangindent=1cm Adams EL, Smith D, Caccavale LJ and Bean MK . “Parents Are Stressed! Patterns of Parent Stress Across COVID-19”. \textit{Frontiers in Psychiatry}, 2019, https://www.frontiersin.org/articles/10.3389/fpsyt.2021.626456/full. Accessed 3 Nov. 2021.
+    \end{flushleft}
+
+
+    \begin{flushleft}
+        \hangindent=1cm Sells, Tom. Magrini, Elena. “How has the pandemic affected household finances?”. \textit{CentreForCities}, 2021, https://www.centreforcities.org/reader/an-uneven-recovery/how-has-the-pandemic-affected-household-finances/. Accessed 3 Nov. 2021
+    \end{flushleft}
+
+
+% NOTE: LaTeX does have a built-in way of generating references automatically,
+% but it's a bit tricky to use so we STRONGLY recommend writing your references
+% manually, using a standard academic format like APA or MLA.
+% (E.g., https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html)
+
+\end{document}
+
+#############
+Use this space to add any questions, comments, concerns, etc. It'll be deleted prior to handing this in!
+
+
+
+#############

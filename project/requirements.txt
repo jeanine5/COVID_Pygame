@@ -1,0 +1,10 @@
+# Project installation requirements
+
+# Testing and code checking
+python-ta
+
+# Graphics and data visualization
+plotly
+pygame
+
+
