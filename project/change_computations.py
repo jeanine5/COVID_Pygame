@@ -14,7 +14,7 @@ This file is Copyright (c) 2021 Jeanine Colleen Ohene-Agyei, Luke Ham, Chelsea W
 def change_in_essentials_monthly(essential: list) -> list[int]:
     """Returns the slope of each the essentials list between each month.
 
-    The slope will calculated using floor division.
+    The slope will calculate using floor division.
 
     >>> change_in_essentials_monthly([12, 24, -14, 55])
     [12, -26, 43]
